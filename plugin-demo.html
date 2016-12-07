@@ -15,7 +15,7 @@
     <!-- And the page has its own styles. -->
     <link rel="stylesheet" href="plugin-demo.css">
   </head>
-    
+
   <body>
     <div class="container">
       <div class="row">
@@ -100,6 +100,32 @@
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <h2>Slider</h2>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">Samples</h5>
+                </div>
+                <div class="panel-body">
+                  <div class="mask" id="Slider">
+                    <ul class="data">
+                      <li>data 1</li>
+                      <li>data 2</li>
+                      <li>data 3</li>
+                      <li>data 4</li>
+                      <li>data 5</li>
+                  </div>
+
+                  <div class = "col-sm-6">
+                    <input id="sliderBar" type="range" value="0" min="0" max="4" step="1"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-4 col-xs-12">
@@ -117,6 +143,7 @@
     <script src="jquery.in-place-editor.js"></script>
     <script src="jquery.dropdown-select.js"></script>
     <script src="jquery.swivel.js"></script>
+    <script src="plugin.js"></script>
 
     <script src="plugin-demo.js"></script>
   </body>
