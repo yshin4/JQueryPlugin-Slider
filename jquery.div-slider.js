@@ -30,7 +30,6 @@
                 }
                 $current.offset({top:currentTop, left: newPosition});
                 $current.data({'value' : Math.ceil(newPosition/valuePerStep) - 1});
-                console.log($current.data('value'));
             }
 
         }).mouseup(() => {
