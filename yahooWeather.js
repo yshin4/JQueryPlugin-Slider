@@ -24,6 +24,7 @@ var getForecast = function() {
             $('.day4-day').html(dataItem.forecast[4].day);
             $('.day5-day').html(dataItem.forecast[5].day);
             $('.day6-day').html(dataItem.forecast[6].day);
+            $('.day0-forecast').html(getForecastByDay(0, dataItem, dataChannel));
             $('.day1-forecast').html(getForecastByDay(1, dataItem, dataChannel));
             $('.day2-forecast').html(getForecastByDay(2, dataItem, dataChannel));
             $('.day3-forecast').html(getForecastByDay(3, dataItem, dataChannel));
@@ -59,22 +60,4 @@ $(document).ready(function() {
     });
 });
 
-var slider = function(){
-  var data = $('ul.data li');
-  var target;
-
-  data.hide().first().show();
-
-  function sliderResponse(target) {
-      data.fadeOut(300).eq(target).fadeIn(300);
-      triggers.removeClass('active').eq(target).addClass('active');
-  }
-
-  $('#sliderBar').change(function() {
-      target = $('#sliderBar').val();
-      sliderResponse(target);
-  });
-}
-
-$("#Slider").submit(slider);
 $("#Forecast").submit(getForecast);
