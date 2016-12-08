@@ -1,6 +1,7 @@
 
+
 (($) => {
-  $.fn.slider = function(){
+  $.fn.slider = function(options){
 
     let data = $('ul.data li');
     let target;
@@ -11,11 +12,14 @@
         data.fadeOut(300).eq(target).fadeIn(300);
     }
 
-    $('#sliderBar').change(function() {
-        target = $('#sliderBar').val();
-        sliderResponse(target);
-    });
-  }
+    // $('#sliderBar').change(function() {
+    //     target = $('#sliderBar').val();
+    //     sliderResponse(target);
+    // });
+
+
+
+  };
 
 })(jQuery);
 
