@@ -1,6 +1,5 @@
 .slider{
     border: 1px solid black;
-    padding: 4px 6px;
     width:400px;
     height:20px;
     -moz-user-select: none;
@@ -11,7 +10,6 @@
   border: 1px solid black;
   width:20px;
   height:20px;
-  position: 300px;
   -moz-user-select: none;
   -webkit-user-select: none;
 }
