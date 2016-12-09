@@ -29,7 +29,8 @@
                   newPosition = minValue;
                 }
                 $current.offset({top:currentTop, left: newPosition});
-                $current.data({'value' : Math.ceil(newPosition/valuePerStep) - 1});
+                $current.data({'value' : Math.ceil((newPosition-sliderPosition)/valuePerStep)});
+                console.log($current.data('value'));
             }
 
         }).mouseup(() => {
