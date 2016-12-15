@@ -32,4 +32,10 @@ $(() => {
             logEvent("Swivel: Swiveled from " + oldAngle + " to " + newAngle);
         }
     });
+
+    $(".knob").knob({
+        change: function (target) {
+            logEvent("Slider knob is currently on data: " target);
+        }
+    });
 });

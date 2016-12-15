@@ -12,7 +12,6 @@
         let minValue = sliderPosition;
 
         let valuePerStep = Math.ceil(sliderWidth / ($('ul.data li').length-1));
-        console.log(valuePerStep);
         $('ul.data li').hide().first().show();
 
         $this.addClass("slider").mousedown((event) => {
@@ -30,7 +29,7 @@
                 }
                 $current.offset({top:currentTop, left: newPosition});
                 $current.data({'value' : Math.ceil((newPosition-sliderPosition)/valuePerStep)});
-                console.log($current.data('value'));
+
             }
 
         }).mouseup(() => {
@@ -42,6 +41,10 @@
                   data.fadeOut(300).eq(target).fadeIn(300);
               }
               sliderResponse(target);
+
+              if ($.isFunction(options.change)) {
+                  options.change.call($current, target);
+              }
             }
             $current = null;
         });
@@ -50,28 +53,4 @@
     };
 })(jQuery);
 
-//
-// (($) => {
-//   $.fn.slider = function(){
-//
-//     let data = $('ul.data li');
-//     let target;
-//
-//     data.hide().first().show();
-//
-//     function sliderResponse(target) {
-//         data.fadeOut(300).eq(target).fadeIn(300);
-//     }
-//
-//     $('knob').change(function() {
-//         target = $('knob').offset().left();
-//         sliderResponse(target);
-//     });
-//
-//   };
-//
-// })(jQuery);
-//
-
 $('.knob').knob();
-//$('ul.data li').slider();
