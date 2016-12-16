@@ -1,5 +1,3 @@
-
-
 (($) => {
     $.fn.knob = function (options) {
         let $this = this;
@@ -29,7 +27,9 @@
                 }
                 $current.offset({top:currentTop, left: newPosition});
                 $current.data({'value' : Math.ceil((newPosition-sliderPosition)/valuePerStep)});
-
+                if ($.isFunction(options.change)) {
+                  options.change.call($current, currentPosition, newPosition);
+              }
             }
 
         }).mouseup(() => {
@@ -37,14 +37,10 @@
               let data = $('ul.data li');
               let target = $current.data('value');
 
-              function sliderResponse(target) {
+              var sliderResponse = function (target) {
                   data.fadeOut(300).eq(target).fadeIn(300);
               }
               sliderResponse(target);
-
-              if ($.isFunction(options.change)) {
-                  options.change.call($current, target);
-              }
             }
             $current = null;
         });
