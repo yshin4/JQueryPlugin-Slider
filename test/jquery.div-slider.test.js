@@ -1,9 +1,5 @@
-describe("Slider jQuery plugin", () => {
+describe("Swivel jQuery plugin", () => {
     let options = {
-        initial: "A",
-
-        options: [
-        ],
         change: () => {
             // No-op; Jasmine spy will check on whether this got called.
         }
@@ -32,14 +28,25 @@ describe("Slider jQuery plugin", () => {
             let mousedown = $.Event("mousedown", { pageX: 0 });
             $(".slider").trigger(mousedown);
 
-            let mousemove = $.Event("mousemove", { pageX: 1 });
+            let mousemove = $.Event("mousemove", { pageX: 60 });
             $(".slider").trigger(mousemove);
 
             let mouseup = $.Event("mouseup");
             $(".slider").trigger(mouseup);
-
             spyOn(options, 'change');
+            expect($(".knob").data('value')).toBe(1);
+
+            let mousedown2 = $.Event("mousedown", { pageX: 0 });
+            $(".knob").trigger(mousedown2);
+
+            let mousemove2 = $.Event("mousemove", { pageX: 0 });
+            $(".knob").trigger(mousemove2);
+
+            let mouseup2 = $.Event("mouseup");
+            $(".knob").trigger(mouseup2);
+
             expect($(".knob").data('value')).toBe(0);
+
             // We check against the style attribute because the CSS property will be the generalized "converted"
             // value of the transform, which is too unwieldy to express manually.
         });
