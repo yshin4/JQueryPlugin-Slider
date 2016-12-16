@@ -33,9 +33,9 @@ $(() => {
         }
     });
 
-    $(".slider").knob({
-        change: function (currentPositon, newPosition) {
-            logEvent("Value : " + currentPositon + " " + newPosition);
+    $(".knob").knob({
+        change: function (currentValue) {
+            logEvent("Current data is : " + currentValue);
         }
     });
 });

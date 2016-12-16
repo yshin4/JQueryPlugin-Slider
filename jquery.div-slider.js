@@ -2,7 +2,6 @@
     $.fn.knob = function (options) {
         let $this = this;
         let $current = null;
-        let currentPosition = 0;
         let knobWidth = $('.knob').width();
         let sliderWidth = Math.ceil($('.slider').width());
         let sliderPosition = $('.slider').offset().left;
@@ -27,9 +26,6 @@
                 }
                 $current.offset({top:currentTop, left: newPosition});
                 $current.data({'value' : Math.ceil((newPosition-sliderPosition)/valuePerStep)});
-                if ($.isFunction(options.change)) {
-                  options.change.call($current, currentPosition, newPosition);
-              }
             }
 
         }).mouseup(() => {
@@ -41,6 +37,9 @@
                   data.fadeOut(300).eq(target).fadeIn(300);
               }
               sliderResponse(target);
+              if ($.isFunction(options.change)) {
+                options.change.call($current, target+1);
+              }
             }
             $current = null;
         });
@@ -49,4 +48,4 @@
     };
 })(jQuery);
 
-$('.knob').knob();
+//$('.knob').knob();
