@@ -3,9 +3,6 @@ describe("Slider jQuery plugin", () => {
         initial: "A",
 
         options: [
-            "A",
-            "B",
-            "C"
         ],
         change: () => {
             // No-op; Jasmine spy will check on whether this got called.
@@ -38,6 +35,11 @@ describe("Slider jQuery plugin", () => {
             let mousemove = $.Event("mousemove", { pageX: 1 });
             $(".slider").trigger(mousemove);
 
+            let mouseup = $.Event("mouseup");
+            $(".slider").trigger(mouseup);
+
+            spyOn(options, 'change');
+            expect($(".knob").data('value')).toBe(0);
             // We check against the style attribute because the CSS property will be the generalized "converted"
             // value of the transform, which is too unwieldy to express manually.
         });

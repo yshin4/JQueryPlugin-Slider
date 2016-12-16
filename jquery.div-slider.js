@@ -8,7 +8,6 @@
         let maxValue = sliderWidth + sliderPosition + 1;
         let minValue = sliderPosition;
         let currentTop = $('.slider').offset().top;
-
         let valuePerStep = Math.ceil(sliderWidth / ($('ul.data li').length - 1));
         $('ul.data li').hide().first().show();
 
@@ -20,7 +19,7 @@
         $(document).mousemove((event) => {
             if ($current) {
                 let newPosition = event.pageX;
-                if (newPosition >= maxValue){
+                if (newPosition + knobWidth >= maxValue){
                     newPosition = maxValue - knobWidth;
                 } else if (newPosition < minValue){
                     newPosition = minValue;
