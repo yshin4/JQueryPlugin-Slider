@@ -7,8 +7,9 @@
         let sliderPosition = $('.slider').offset().left;
         let maxValue = sliderWidth + sliderPosition + 1;
         let minValue = sliderPosition;
+        let currentTop = $('.slider').offset().top;
 
-        let valuePerStep = Math.ceil(sliderWidth / ($('ul.data li').length-1));
+        let valuePerStep = Math.ceil(sliderWidth / ($('ul.data li').length - 1));
         $('ul.data li').hide().first().show();
 
         $this.addClass("slider").mousedown((event) => {
@@ -19,27 +20,27 @@
         $(document).mousemove((event) => {
             if ($current) {
                 let newPosition = event.pageX;
-                if(newPosition >= maxValue){
-                  newPosition = maxValue - knobWidth;
-                }else if(newPosition < minValue){
-                  newPosition = minValue;
+                if (newPosition >= maxValue){
+                    newPosition = maxValue - knobWidth;
+                } else if (newPosition < minValue){
+                    newPosition = minValue;
                 }
-                $current.offset({top:currentTop, left: newPosition});
-                $current.data({'value' : Math.ceil((newPosition-sliderPosition)/valuePerStep)});
+                $current.offset({top: currentTop, left: newPosition});
+                $current.data({'value': Math.ceil((newPosition - sliderPosition) / valuePerStep)});
             }
 
         }).mouseup(() => {
-            if($current){
-              let data = $('ul.data li');
-              let target = $current.data('value');
+            if ($current){
+                let data = $('ul.data li');
+                let target = $current.data('value');
 
-              var sliderResponse = function (target) {
-                  data.fadeOut(300).eq(target).fadeIn(300);
-              }
-              sliderResponse(target);
-              if ($.isFunction(options.change)) {
-                options.change.call($current, target+1);
-              }
+                var sliderResponse = function (target) {
+                    data.fadeOut(300).eq(target).fadeIn(300);
+                };
+                sliderResponse(target);
+                if ($.isFunction(options.change)) {
+                    options.change.call($current, target + 1);
+                }
             }
             $current = null;
         });
@@ -48,4 +49,4 @@
     };
 })(jQuery);
 
-//$('.knob').knob();
+// $('.knob').knob();
