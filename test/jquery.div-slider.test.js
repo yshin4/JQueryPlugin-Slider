@@ -1,13 +1,12 @@
-describe("Dropdown div-slider plugin", () => {
+describe("Slider jQuery plugin", () => {
     let options = {
-        initial: "Potato",
+        initial: "A",
 
         options: [
-            "Potato",
-            "Pie",
-            "Cabbage"
+            "A",
+            "B",
+            "C"
         ],
-
         change: () => {
             // No-op; Jasmine spy will check on whether this got called.
         }
@@ -21,21 +20,26 @@ describe("Dropdown div-slider plugin", () => {
     afterEach(() => fixture.cleanup());
 
     it("should return itself when the plugin is installed", () => {
-        let $target = $("slider");
-        let $pluginResult = $target.slider(options);
+        let $target = $(".knob");
+        let $pluginResult = $target.knob(options);
 
         expect($pluginResult).toBe($target);
     });
 
     describe("installed behavior", () => {
-        beforeEach(() => $(".slider").knob(options));
+        beforeEach(() => $(".knob").knob(options));
 
-        it("should build the correct elements", () => {
-            // Not exhaustive, but should be sufficient.
-            expect($(".slider").hasClass("ul.data li")).toBe(true);
-            expect($(".slider").find("ul.data li").length).toBe(1);
-            expect($(".slider").find("ul.data li").text())
-                .toBe(options.initial);
+        it("should update its CSS transform correctly", () => {
+            // When synthesizing events, we need only explicitly set the values that the plugin code will
+            // actually use.
+            let mousedown = $.Event("mousedown", { pageX: 0 });
+            $(".slider").trigger(mousedown);
+
+            let mousemove = $.Event("mousemove", { pageX: 1 });
+            $(".slider").trigger(mousemove);
+
+            // We check against the style attribute because the CSS property will be the generalized "converted"
+            // value of the transform, which is too unwieldy to express manually.
         });
     });
 });
